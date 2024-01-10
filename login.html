@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jumia</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="./images/logo.png" />
+  </head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+    .content-container,
+    body,
+    html {
+      
+      min-height: 500px;
+    }
+    html {
+      display: block;
+      --mdc-outlined-button-outline-color: #f8982d;
+      --mdc-theme-on-primary: #fff;
+      font-family: sans-serif;
+    }
+    :root {
+      view-transition-name: root;
+    }
+    .header {
+      align-items: center;
+      display: flex;
+      height: 64px;
+      justify-content: center;
+      margin: 0 0 8px;
+      position: relative;
+    }
+
+    /* .logo {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      
+      display: flex;
+    } */
+    .logo {
+    height: 64px;
+    margin-top: 80px;
+    }
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+    .card {
+      background-color: #fff;
+      border-radius: 4px;
+      flex: 1;
+      padding: 8px 24px;
+      position: relative;
+      border: 2px solid red;
+    }
+    div {
+      display: block;
+    }
+   
+    .card,
+    .overlay {
+      background-color: hsla(0, 0%, 100%, 0.5);
+      bottom: 0;
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0px;
+      z-index: 1;
+      /* border: 2px solid green; */
+    }
+    
+    #identification-form {
+      height: 100%;
+      /* border: 2px solid red;  */
+    }
+    form {
+      display: block;
+      margin-top: 0em;
+      /* border: 2px solid blue; */
+    }
+    
+    .ctx-identification {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .card,
+    .center {
+      text-align: center;
+    }
+    .card,
+    .subheading {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5em;
+      margin: 8px 0 16px;
+    }
+    p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+    .card,
+    .hint,
+    .card,
+    .subheading {
+      color: #4a4a4a;
+    }
+    .card,
+    .fields {
+      padding-top: 16px;
+    }
+    .hidden {
+      display: none !important;
+    }
+
+    .mdc-select--outlined {
+      border: none;
+    }
+    .mdc-select {
+      display: inline-flex;
+      position: relative;
+    }
+
+    .card,
+    .fields,
+    .mdc-text-field {
+      min-width: 48px;
+      width: 100%;
+      /* border: 2px solid rgb(241, 9, 9); */
+    }
+    .mdc-text-field--with-trailing-icon,
+    .mdc-text-field--outlined :not(.mdc-notched-outline--notched),
+    .mdc-notched-outline__notch {
+      max-width: calc(100% - 60px);
+      border: 2px solid yellow;
+      position: absolute;
+    }
+    /* element .style{
+    width: 145.25px;
+} */
+    .mdc-notched-outline__notch,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled),
+    .mdc-text-field--focused {
+      border-color: #f8982d;
+    }
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled),
+    .mdc-notched-outline__leading,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled),
+    .mdc-notched-outline__notch,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled),
+    .mdc-notched-outline__trailing {
+      border-color: rgba(0, 0, 0, 0.38);
+    }
+    .mdc-text-field--outlined,
+    .mdc-notched-outline {
+      z-index: 1;
+    }
+    .mdc-notched-outline,
+    .mdc-notched-outline--upgraded {
+      position: absolute;
+      box-sizing: border-box;
+      display: flex;
+      height: 100%;
+      left: 0px;
+      max-width: 100%;
+      pointer-events: none;
+      right: 0px;
+      text-align: left;
+      top: 0;
+      width: 100%;
+      /* border: 2px solid green; */
+    }
+    .mdc-notched-outline__notch {
+      flex: 0 0 auto;
+      max-width: calc(100% - 24px);
+      width: auto;
+    }
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-bottom: 1px solid;
+      border-top: 1px solid;
+      box-sizing: border-box;
+      height: 100%;
+      /* pointer-events: none; */
+    }
+    .mdc-text-field--outlined,
+    .mdc-floating-label {
+      left: 4px;
+      right: auto;
+    }
+    .mdc-text-field,
+    .mdc-floating-label {
+      pointer-events: none;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .mdc-notched-outline,
+    .mdc-floating-label {
+      display: inline-block;
+      max-width: 100%;
+      position: relative;
+    }
+    .mdc-text-field--outlined,
+    .mdc-notched-outline,
+    .mdc-notched-outline__leading {
+      /* width: var(--mdc-shape-small,4px); */
+      border-bottom-left-radius: var(--mdc-shape-small, 4px);
+      border-bottom-right-radius: 0;
+      border-top-left-radius: var(--mdc-shape-small, 4px);
+      border-top-right-radius: 0;
+    }
+    .mdc-notched-outline__trailing {
+      flex-grow: 1;
+    }
+    .mdc-notched-outline__leading[dir="rtl"],
+    .mdc-notched-outline__trailing,
+    [dir="rtl"],
+    .mdc-notched-outline__leading {
+      border-left: none;
+      border-right: 1px solid;
+    }
+    .mdc-text-field--outlined,
+    .mdc-text-field--with-trailing-icon {
+      padding-right: 0;
+    }
+    .mdc-text-field:not(.mdc-text-field--disabled),
+    .mdc-text-field__input {
+      color: rgba(0, 0, 0, 0.87);
+    }
+    .mdc-text-field--outlined,
+    .mdc-text-field__input {
+      background-color: transparent;
+      border: none;
+      display: flex;
+    }
+
+    .mdc-text-field--outlined,
+    .mdc-text-field__input {
+      height: 100%;
+    }
+    .mdc-text-field,
+    .mdc-text-field__input {
+      caret-color: #f8982d;
+      caret-color: var(--mdc-theme-primary, #f8982d);
+    }
+    .mdc-text-field__input {
+      -webkit-font-smoothing: antialiased;
+      appearance: none;
+      background: none;
+      border: none;
+      border-radius: 0;
+      font-family: sans-serif;
+      font-family: var(
+        --mdc-typography-subtitle1-font-family,
+        var(--mdc-typography-font-family, Roboto, sans-serif)
+      );
+      font-size: var(--mdc-typography-subtitle1-font-size, 1rem);
+      font-weight: var(--mdc-typography-subtitle1-font-weight, 400);
+      letter-spacing: var(
+        --mdc-typography-subtitle1-letter-spacing,
+        0.009375em
+      );
+      min-width: 0;
+      padding: 0;
+      -webkit-text-decoration: var(
+        --mdc-typography-subtitle1-text-decoration,
+        inherit
+      );
+      text-decoration: var(--mdc-typography-subtitle1-text-decoration, inherit);
+      text-transform: var(--mdc-typography-subtitle1-text-transform, inherit);
+      transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      width: 100%;
+    }
+    /* input[Attributes Style] {
+    direction: ltr;
+    unicode-bidi: isolate;
+} */
+
+    input[type="text" i] {
+      writing-mode: horizontal-tb !important;
+      padding-block: 1px;
+      padding-inline: 2px;
+    }
+
+    input {
+      position: absolute;
+      text-rendering: auto;
+      word-spacing: normal;
+      line-height: normal;
+      text-indent: 0px;
+      text-shadow: none;
+      text-align: start;
+      appearance: auto;
+      -webkit-rtl-ordering: logical;
+      margin: 0em;
+      border: 2px solid darkmagenta;
+      /* border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133)); */
+    }
+    .card,
+    .actions {
+      margin-top: 16px;
+    }
+    .mdc-touch-target-wrapper {
+      display: inline;
+    }
+    .card,
+    .actions,
+    .mdc-touch-target-wrapper button {
+      --mdc-typography-button-text-transform: none;
+      --mdc-typography-button-font-size: 16px;
+      --mdc-typography-button-font-weight: bold;
+      height: 51px;
+      width: 100%;
+    }
+    .mdc-button {
+      --mdc-ripple-fg-size: 0;
+      --mdc-ripple-left: 0;
+      --mdc-ripple-top: 0;
+      --mdc-ripple-fg-scale: 1;
+      --mdc-ripple-fg-translate-end: 0;
+      --mdc-ripple-fg-translate-start: 0;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      will-change: transform, opacity;
+    }
+    .mdc-button {
+      align-items: center;
+      background: transparent;
+      border: none;
+      box-sizing: border-box;
+      display: inline-flex;
+      justify-content: center;
+      line-height: inherit;
+      min-width: 64px;
+      outline: none;
+      overflow: visible;
+      position: relative;
+      -moz-user-select: none;
+      user-select: none;
+      vertical-align: middle;
+      border: 2px solid goldenrod;
+      background-color: #f8982d;
+    }
+    .mdc-button--raised {
+      padding: 0 16px;
+      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* .mdc-button--raised {
+      --mdc-elevation-box-shadow-for-gss: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      border-radius: var(
+        --mdc-protected-button-container-shape,
+        var(--mdc-shape-small, 4px)
+      );
+      box-shadow: var(
+        --mdc-protected-button-container-elevation,
+        var(--mdc-elevation-box-shadow-for-gss)
+      );
+      font-family: var(
+        --mdc-protected-button-label-text-font,
+        var(
+          --mdc-typography-button-font-family,
+          var(--mdc-typography-font-family, sans-serif)
+        )
+      );
+      font-size: var(
+        --mdc-protected-button-label-text-size,
+        var(--mdc-typography-button-font-size, 0.875rem)
+      );
+      font-weight: var(
+        --mdc-protected-button-label-text-weight,
+        var(--mdc-typography-button-font-weight, 500)
+      );
+      text-transform: var(
+        --mdc-protected-button-label-text-transform,
+        var(--mdc-typography-button-text-transform, uppercase)
+      );
+      letter-spacing: var(
+        --mdc-protected-button-label-text-tracking,
+        var(--mdc-typography-button-letter-spacing, 0.0892857143em)
+      );
+    } */
+    .mdc-button--raised:not(:disabled) {
+      color: #442b2d;
+      /* color: var(--mdc-protected-button-label-text-color,var(--mdc-theme-on-primary,#442b2d)); */
+    }
+    .mdc-button,
+    .mdc-button__label {
+      position: relative;
+    }
+    
+    .actions,
+    .mdc-touch-target-wrapper button {
+      --mdc-typography-button-text-transform: none;
+      --mdc-typography-button-font-size: 16px;
+      --mdc-typography-button-font-weight: bold;
+      height: 51px;
+      width: 100%;
+    }
+    .card,
+    .ctx-identification,
+    .disclaimer {
+      font-size: 12px;
+      font-family: sans-serif;
+      line-height: 16px;
+      padding-top: 5px;
+      position: relative;
+      text-align: center;
+    }
+    a {
+      color: #f8982d;
+    }
+    
+    .mdc-touch-target-wrapper {
+    display: inline;
+}
+.card .actions .mdc-touch-target-wrapper button {
+    --mdc-typography-button-text-transform: none;
+    --mdc-typography-button-font-size: 16px;
+    --mdc-typography-button-font-weight: bold;
+    height: 51px;
+    width: 100%;
+}
+.mdc-button {
+    align-items: center;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    line-height: inherit;
+    min-width: 64px;
+    outline: none;
+    overflow: visible;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+}
+  </style>
+  <body dir="ltr" class="theme-default">
+    <div class="content-container">
+      <div class="header">
+        <img class="logo" src="./images/logo.png" alt="Jumia-Logo" />
+      </div>
+      <div class="card">
+        <div class="overlay" hidden></div>
+        <form action="#" id="identification-form" method="POST">
+          <div
+            class="ctx-identification flow-layout"
+            data-content="identification"
+          >
+            <div class="center">
+              <h2>Welcome to Jumia</h2>
+              <p class="subheading">
+                Type your e-mail or phone number to log in or create a Jumia
+                account.
+              </p>
+            </div>
+            <div class="fields">
+              <div>
+                <div
+                  id="phoneCountryCodeSelect"
+                  dir="ltr"
+                  class="select-field mdc-select mdc-select--outlined hidden prefix-component"
+                >
+                  <input
+                    id="input_phoneCountryCodeSelect"
+                    type="hidden"
+                    required=""
+                    name=""
+                    value="+234 NG"
+                  />
+                </div>
+
+                <div class="identifier-field-container">
+                  <label
+                    class="mdc-text-field--1tr-text mdc-text-field mdc-text-field--outline mdc-text-field--with-traling-icon text-field"
+                  >
+                    <span
+                      class="mdc-text-field_affix mdc-text-field_affix--prefix identifierValuePrefix hidden"
+                      >+234 NG</span
+                    >
+                    <span
+                      class="mdc-notched-outline mdc-notched-outline--upgraded"
+                    >
+                      <span class="mdc-notched-outline__leading"></span>
+                      <span
+                        class="mdc-notched-outline__notch"
+                        style="width: 145.25px"
+                      >
+                        <span
+                          class="mdc-floating-label mdc-floating-label--required"
+                          id="label_idenitfierValue"
+                          style
+                        >
+                          Email or Mobile Number
+                        </span>
+                      </span>
+                      <span class="mdc-notched-outline__trailing"></span>
+                    </span>
+                    <input
+                      id="input_identifierValue"
+                      name="identifierValue"
+                      class="mdc-text-field__input"
+                      type="text"
+                      aria-labelledby="Email or Mobile Number"
+                      aria-controls="Email or Mobile Number"
+                      required
+                      autocomplete="username"
+                      dir="ltr"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <div class="mdc-touch-target-wrapper">
+                <button
+                  class="mdc-button mdc-button-touch mdc-button-raised access-btn"
+                  type="button"
+                >
+                  <span class="mdc-button__label">Continue</span>
+                  <span class="mdc-button__touch"></span>
+                </button>
+              </div>
+              <div class="disclaimer">
+                <label>By continue you agree to Jumia's</label>
+                <br />
+                <a href="#">Terms and Condition</a>
+              </div>
+              <div class="mdc-touch-target-wrapper">
+                 <button id="btn-use-passkey" class=" mdc-button mdc-button--touch mdc-button--outlined"></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
